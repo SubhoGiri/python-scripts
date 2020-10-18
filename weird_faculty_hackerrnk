@@ -1,0 +1,61 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+
+/*
+ * Complete the 'exam' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY v as parameter.
+ */
+
+function exam(input) {
+    // Write your code here
+        var zeros = 0, ones = 0;
+for (var i = 0; i< input.length; i++) {
+if (input [i] == 1)
+ones++;
+else
+zeros++;
+}
+var k = 0, i = 0, rest = ones - zeros, curr = 0;
+// System.out.println("zeroes : " + zeros + " ones : " + ones);
+
+    while (i < input.length && curr <= rest){
+        if (input[i] == 0){
+            zeros--;
+            curr--;
+            rest++;
+        } else{
+            ones--;
+            curr++;
+            rest--;
+        }
+        i++;
+        k++;
+    }
+    return k;
+
+}
+function main() {
